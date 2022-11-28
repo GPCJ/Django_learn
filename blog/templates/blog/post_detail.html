@@ -42,6 +42,7 @@
                         <header class="mb-4">
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                            <h5 class="text-muted">{{ post.hook_text}}</h5>
                             <!-- Post Author -->
                             <p class="lead">
                               by
@@ -62,8 +63,8 @@
 
                         <hr>
                         </figure>
-                        <!-- Post content-->
-                        <p>{{ post.content }}</p>
+                        <!-- Post content -->
+                        <h5>{{ post.content }}</h5>
 
                         {% if post.file_upload %}
                         <div class="d-grid gap-2 d-md-block">
@@ -73,7 +74,7 @@
                             <!-- csv파일이라면 해당 아이콘을 표시 -->
                             {% if post.get_file_ext == 'csv' %}
                                 <i class="fa-solid fa-file-csv"></i>
-                                
+
                             <!-- 엑셀파일이라면 해당 아이콘을 표시 -->
                             {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
                                 <i class="fa-solid fa-file-excel"></i>
@@ -93,7 +94,6 @@
                         <hr>
 
                         <section class="mb-5">
-                            <p class="fs-5 mb-4">{{ post.content }}</p>
                     </article>
                     <!-- Comments section-->
                     <section class="mb-5">
