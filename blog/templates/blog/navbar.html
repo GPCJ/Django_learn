@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <!-- 여백 생성 -->
+  <div class="container">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about_me/">About Me</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> 
+        </ul>    
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+      </div>
+    </nav>
+  
+  <!-- 로그인 버튼 -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Log In
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="loginModalLabel"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp&nbsp Log In</h1>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-outline-warning btn-block btn-sm"><i class="fa-solid fa-k"></i>&nbsp&nbsp Log in with Kakao</button>
+              <button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa-solid fa-n"></i>&nbsp&nbsp Log in with Naver</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa-regular fa-envelope"></i>&nbsp&nbsp Sign up with</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
