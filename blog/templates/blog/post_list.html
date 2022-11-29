@@ -81,8 +81,9 @@
   <div class="container my-3">
     <div class="row">
       <!-- 브라우저 크기가 크면 9/12, 중간 크기이면 8/12만큼의 영역을 사용 -->
-      <div class="col-md-8 col-lg-9">
+      <div class="col-md-8 col-lg-9" id="main-area">
         <h1>Blog</h1>
+      {% if post_list.exists %}
 
         {% for p in post_list %}
         <!-- 블로그 포스트 -->
@@ -102,6 +103,9 @@
             </div>
         </div>
         {% endfor %}
+      {% else %}  
+        <h3>아직 게시물이 없습니다.</h3>
+      {% endif %}
 
         <!-- 페이지 이동 버튼 -->
         <nav aria-label="Pagination">
