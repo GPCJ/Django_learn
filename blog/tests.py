@@ -1,14 +1,15 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from .models import Post
 
 # Create your tests here.
 
 class TestView(TestCase):
   def setUp(self):
-    def setUp(self):
-      self.client = Client()
-
+    self.client = Client()
+    self.user_Woo_Jong = User.objects.create_user(username='Woo_Jong', password='somepassword')
+    self.user_sok = User.objects.create_user(username='sok', password='somepassword')
 
   def navbar_test(self, soup):
     navbar = soup.nav
@@ -32,11 +33,13 @@ class TestView(TestCase):
 
     post_001 = Post.objects.create(
       title = '첫 번째 포스트입니다.',
-      content = 'Hello World. We are the world.'
+      content = 'Hello World. We are the world.',
+      author = self.user_Woo_Jong
     )
     post_002 = Post.objects.create(
       title = '두 번째 포스트입니다.',
-      content = '1등이 전부는 아니잖아요?'
+      content = '1등이 전부는 아니잖아요?',
+      author = self.user_sok
     )
     self.assertEqual(Post.objects.count(), 2)
 
@@ -48,12 +51,15 @@ class TestView(TestCase):
     self.assertIn(post_002.title, main_area.text)
     self.assertNotIn('아직 게시물이 없습니다.', main_area.text)
   
+    self.assertIn(self.user_Woo_Jong.username.upper(), main_area.text)
+    self.assertIn(self.user_sok.username.upper(), main_area.text)
 
 
   def test_post_detail(self):
     post_000 = Post.objects.create(
       title = '첫 번째 포스트입니다.',
-      content = 'Hello World. We are the world.'
+      content = 'Hello World. We are the world.',
+      author = self.user_Woo_Jong,
     )
     
     self.assertEqual(post_000.get_absolute_url(), '/blog/1/')
@@ -69,7 +75,9 @@ class TestView(TestCase):
 
     main_area = soup.find('div', id = 'main-area')
     post_area = main_area.find('div', id='post-area')
-    self.assertIn(post_000.title, post_area.text)
+    self.assertIn(self.user_Woo_Jong.username.upper(), post_area.text)
+
+    self.assertIn(post_000.content, post_area.text)
 
   # def test_post_list(self):
   #   # 1.1 포스트 목록 페이지를 가져온다.
