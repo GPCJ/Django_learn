@@ -49,6 +49,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 포스트 작성 버튼 -->
+            {% if user.is_authenticated %}
+                <!-- 유저나 슈퍼유저 등급이거나 스태프 등급이라면 글씨기 버튼을 표시한다. -->
+                {% if user.is_superuser or user.is_staff %} 
+                    <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i> 글쓰기 </a>
+                {% endif %}
+            {% endif %}
+            
         </div>
     </div>
 </div>

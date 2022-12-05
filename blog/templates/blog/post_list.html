@@ -1,11 +1,6 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}
-    {% if user.is_authenticated%}
-        {% if user.is_superuser or user.is_staff %}
-            <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>  New Post</a>
-        {% endif %}
-    {% endif %}
 
     <h1>
         Blog
@@ -25,9 +20,9 @@
                 {% endif %}
                 <div class="card-body">
                     {% if p.category %}
-                        <span class="badge badge-secondary float-right">{{ p.category }}</span>
+                        <span class="badge bg-secondary float-end">{{ p.category }}</span>
                     {% else %}
-                        <span class="badge badge-secondary float-right">미분류</span>
+                        <span class="badge bg-secondary float-end">미분류</span>
                     {% endif %}
 
                     <h2 class="card-title">{{ p.title}}</h2>
@@ -39,7 +34,7 @@
                     {% if p.tags.exists %}
                         <i class="fas fa-tags"></i>
                         {% for tag in p.tags.iterator %}
-                            <a href="{{ tag.get_absolute_url }}"><span class="badge badge-pill badge-light">{{ tag }}</span></a>
+                            <a href="{{ tag.get_absolute_url }}"><span class="badge bg-secondary">{{ tag }}</span></a>
                         {% endfor %}
                         <br/>
                         <br/>
