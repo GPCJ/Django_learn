@@ -11,6 +11,7 @@ from .forms import CommentForm
 class PostList(ListView):
     model = Post
     ordering = '-pk'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data()
@@ -74,7 +75,6 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
             for t in self.object.tags.all():
                 tags_str_list.append(t.name)
             context['tags_str_default'] = '; '.join(tags_str_list)
-
         return context
 
     def dispatch(self, request, *args, **kwargs):
