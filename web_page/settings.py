@@ -23,9 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pxc$^1n7o5x4oq))*fuwb_s0fi3wrz@3v_an$txcxwz98p5&4s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', 1))
 
-ALLOWED_HOSTS = []
+if os.environ.get('DJANGO_ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = os.environ.get
+    ('DJANGO_ALLOWED_HOSTS').split(' ')
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,7 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'crispy_forms',
-    'markdownx',
+    'markdownx', 
     'django.contrib.sites',
     'allauth',
     'allauth.account',
